@@ -16,7 +16,7 @@ CREATE TABLE Empleado(
    PRIMARY KEY(no_empleado),
    CHECK (seccion IN ('LIB', 'DSC')));
 
-CREATE TABLE Selccion(
+CREATE TABLE Seleccion(
 	seccion VARCHAR(3),
 	sueldo INTEGER,
 	PRIMARY KEY(seccion),
