@@ -1,0 +1,14 @@
+CREATE USER MIGMOR;
+GRANT SELECT, DELETE
+ON Musica, DVD, Libro
+TO MIGMOR;
+
+CREATE USER ATD;
+GRANT INSERT, SELECT
+ON Administrador, Empleado, Clave_Libro
+TO ATD;
+
+CREATE USER DOR;
+GRANT UPDATE, INSERT, DELETE
+ON Clave_Musica, Articulo, Clave_Disco
+TO DOR;
