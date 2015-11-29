@@ -5,8 +5,8 @@ CREATE DATABASE tiendota
       CONNECTION LIMIT = -1;
 
 CREATE TABLE Empleado(
-   no_empleado   VARCHAR(4) NOT NULL,
-   contrasenia VARCHAR(15) NOT NULL,
+   no_empleado INTEGER NOT NULL,
+   contrasenia VARCHAR(30) NOT NULL,
    rfc VARCHAR(13) NOT NULL,
    nombre VARCHAR(255) NOT NULL,
    calle VARCHAR(255) NOT NULL,
@@ -16,20 +16,20 @@ CREATE TABLE Empleado(
    PRIMARY KEY(no_empleado),
    CHECK (seccion IN ('LIB', 'DSC')));
 
-CREATE TABLE Seleccion(
+CREATE TABLE Seccion(
 	seccion VARCHAR(3),
-	sueldo INTEGER,
+	sueldo FLOAT,
 	PRIMARY KEY(seccion),
 	CHECK (seccion IN ('LIB', 'DSC')),
 	CHECK(sueldo>=0));
 
 CREATE TABLE Administrador (
-   nombre_usuario VARCHAR(50) NOT NULL,
+   no_administrador INTEGER NOT NULL,
    contrasenia   VARCHAR(30) NOT NULL,
-   PRIMARY KEY(nombre_usuario));
+   PRIMARY KEY(no_administrador));
 
 CREATE TABLE Articulo(
-   clave VARCHAR(10) NOT NULL,
+   clave INTEGER NOT NULL,
    precio FLOAT,
    cantidad INTEGER,
    PRIMARY KEY(clave),
@@ -37,7 +37,7 @@ CREATE TABLE Articulo(
    CHECK(cantidad>=0));
 
 CREATE TABLE Clave_Libro(
-   clave VARCHAR(10) NOT NULL,
+   clave INTEGER NOT NULL,
    titulo VARCHAR(255) NOT NULL,
    PRIMARY KEY (clave));
 
@@ -51,7 +51,7 @@ CREATE TABLE Libro(
    PRIMARY KEY (titulo));
 
 CREATE TABLE Clave_Disco(
-   clave VARCHAR(10) NOT NULL,
+   clave INTEGER NOT NULL,
    nombre VARCHAR(255) NOT NULL,
    PRIMARY KEY (clave));
 
@@ -61,7 +61,7 @@ CREATE TABLE Disco(
    PRIMARY KEY (nombre));
 
 CREATE TABLE Clave_Musica(
-   clave VARCHAR(10) NOT NULL,
+   clave INTEGER NOT NULL,
    interprete   VARCHAR(255) NOT NULL,
    pistas INTEGER,
    PRIMARY KEY (clave),
@@ -73,14 +73,14 @@ CREATE TABLE Musica(
    PRIMARY KEY (interprete));
 
 CREATE TABLE DVD(
-   clave VARCHAR(10) NOT NULL,
+   clave INTEGER NOT NULL,
    formato VARCHAR(20),
    genero VARCHAR(255) NOT NULL,
    PRIMARY KEY (clave),
    CHECK(formato IN ('DVD', 'BRY')));
 
 CREATE TABLE Videojuego(
-   clave VARCHAR(10) NOT NULL,
+   clave INTEGER NOT NULL,
    tipo  VARCHAR(255) NOT NULL,
    consola VARCHAR(255),
    PRIMARY KEY (clave),
@@ -88,44 +88,44 @@ CREATE TABLE Videojuego(
 
 CREATE TABLE Venta(
    ID_venta  INTEGER NOT NULL,
-   total   INTEGER,
+   total   FLOAT,
    fecha  DATE NOT NULL,
    PRIMARY KEY(ID_venta),
-   CHECK(total>=0));
+   CHECK(total>=0.0));
 
 CREATE TABLE Empleado_Administrador (
-   no_empleado VARCHAR(4),
-   nombre_usuario VARCHAR(50) NOT NULL,
+   no_empleado INTEGER,
+   no_administrador INTEGER NOT NULL,
    FOREIGN KEY(no_empleado) REFERENCES Empleado(no_empleado),
-   FOREIGN KEY(nombre_usuario) REFERENCES Administrador(nombre_usuario),
-   PRIMARY KEY(nombre_usuario));
+   FOREIGN KEY(no_administrador) REFERENCES Administrador(no_administrador),
+   PRIMARY KEY(no_empleado));
 
 CREATE TABLE Venta_Empleado (
    ID_venta  INTEGER,
-   no_empleado VARCHAR(4),
+   no_empleado INTEGER,
    FOREIGN KEY(ID_venta) REFERENCES Venta(ID_venta),
    FOREIGN KEY(no_empleado) REFERENCES Empleado(no_empleado),
-   PRIMARY KEY(no_empleado));
+   PRIMARY KEY(ID_venta));
 
 CREATE TABLE Articulo_Administrador(
-   nombre_usuario VARCHAR(50),
-   clave VARCHAR(10),
-   FOREIGN KEY (nombre_usuario) REFERENCES Administrador(nombre_usuario),
+   clave INTEGER,
+   no_administrador INTEGER,
+   FOREIGN KEY (no_administrador) REFERENCES Administrador(no_administrador),
    FOREIGN KEY (clave) REFERENCES Articulo(clave),
-   PRIMARY KEY(nombre_usuario));
+   PRIMARY KEY(clave));
 
 CREATE TABLE Venta_Administrador (
-   nombre_usuario  VARCHAR(50),
+   no_administrador  INTEGER,
    ID_venta INTEGER,
    FOREIGN KEY(ID_venta) REFERENCES Venta(ID_venta),
-   FOREIGN KEY(nombre_usuario) REFERENCES Administrador(nombre_usuario),
-   PRIMARY KEY(nombre_usuario));
+   FOREIGN KEY(no_administrador) REFERENCES Administrador(no_administrador),
+   PRIMARY KEY(ID_venta));
 
 CREATE TABLE Venta_Articulo (
    ID_venta INTEGER,
-   clave VARCHAR(10),
+   clave INTEGER,
    cantidad INTEGER,
    FOREIGN KEY(ID_venta) REFERENCES Venta(ID_venta),
    FOREIGN KEY(clave) REFERENCES Articulo(clave),
-   PRIMARY KEY(ID_venta),
+   PRIMARY KEY(clave),
    CHECK(cantidad>0));

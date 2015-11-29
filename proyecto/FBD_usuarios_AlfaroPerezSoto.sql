@@ -1,14 +1,14 @@
-CREATE USER MIGMOR;
+CREATE USER ehc;
 GRANT SELECT, DELETE
 ON Musica, DVD, Libro
-TO MIGMOR;
+TO ehc;
 
-CREATE USER ATD;
+CREATE USER atd;
 GRANT INSERT, SELECT
 ON Administrador, Empleado, Clave_Libro
-TO ATD;
+TO atd;
 
-CREATE USER DOR;
+CREATE USER dor;
 GRANT UPDATE, INSERT, DELETE
 ON Clave_Musica, Articulo, Clave_Disco
-TO DOR;
+TO dor;
