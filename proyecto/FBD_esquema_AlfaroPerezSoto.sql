@@ -1,4 +1,4 @@
-CREATE DATABASE tiendota
+CREATE DATABASE Tienda
    WITH OWNER = postgres
       ENCODING = 'UTF8'
       TABLESPACE = pg_default
@@ -31,10 +31,10 @@ CREATE TABLE Administrador (
 CREATE TABLE Articulo(
    clave INTEGER NOT NULL,
    precio FLOAT,
-   cantidad INTEGER,
+   cantidad_articulo INTEGER,
    PRIMARY KEY(clave),
    CHECK(precio>=0.0),
-   CHECK(cantidad>=0));
+   CHECK(cantidad_articulo>=0));
 
 CREATE TABLE Clave_Libro(
    clave INTEGER NOT NULL,
@@ -52,13 +52,13 @@ CREATE TABLE Libro(
 
 CREATE TABLE Clave_Disco(
    clave INTEGER NOT NULL,
-   nombre VARCHAR(255) NOT NULL,
+   nombre_disco VARCHAR(255) NOT NULL,
    PRIMARY KEY (clave));
 
 CREATE TABLE Disco(
-   nombre VARCHAR(255) NOT NULL,
+   nombre_disco VARCHAR(255) NOT NULL,
    anio INTEGER NOT NULL,
-   PRIMARY KEY (nombre));
+   PRIMARY KEY (nombre_disco));
 
 CREATE TABLE Clave_Musica(
    clave INTEGER NOT NULL,

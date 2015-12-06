@@ -1,6 +1,6 @@
 CREATE USER ehc;
-GRANT SELECT, DELETE
-ON Musica, DVD, Libro
+GRANT ALL
+ON ALL
 TO ehc;
 
 CREATE USER atd;

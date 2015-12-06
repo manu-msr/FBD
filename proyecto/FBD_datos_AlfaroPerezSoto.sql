@@ -210,7 +210,7 @@ VALUES (2000,'UFR17LVR4OL'),
 	(2099,'WQK18NAS0NA');
 
 -- Inserciones de la tabla Artículo.
-INSERT INTO Articulo (clave,precio,cantidad) 
+INSERT INTO Articulo (clave,precio,cantidad_articulo) 
 VALUES (3000,'283.78',21),
 	(3001,'441.70',19),
 	(3002,'821.32',50),
@@ -818,7 +818,7 @@ VALUES ('metus. In','Mauris','Middleton, Evangeline P.','Liberia',1997,'aliquam 
 	('perdi el juego','at,','Bruce, Ishmael K.','Spain',2009,'ipsum cursus');
 
 --INSERTS para la tabla Disco.
-INSERT INTO Clave_Disco (clave, nombre) 
+INSERT INTO Clave_Disco (clave, nombre_disco) 
 VALUES (3100,'erat eget ipsum.'),
 	(3101,'consequat'),
     (3102,'Maecenas iaculis aliquet'),
@@ -1121,7 +1121,7 @@ VALUES (3100,'erat eget ipsum.'),
     (3399,'utodiovel');
 
 --INSERTS de Disco
-INSERT INTO Disco (nombre, anio)
+INSERT INTO Disco (nombre_disco, anio)
 VALUES ('mi',1999),
     ('Sednulla',1999),
     ('Classaptent',2001),
